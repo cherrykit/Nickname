@@ -1,0 +1,8 @@
+name: Nickname
+main: me.cherrykit.Nickname
+version: 1.0
+
+commands:
+   nickname:
+     description: Hey! You get a nickname!
+     usage: /nickname <name>
