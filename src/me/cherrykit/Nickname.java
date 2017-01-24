@@ -61,6 +61,7 @@ public class Nickname extends JavaPlugin implements Listener{
 		return false;
 	}
 	
+	//Shows nickname when player joins
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e){
 		Player p = e.getPlayer();
