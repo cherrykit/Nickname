@@ -24,12 +24,14 @@ public class Nickname extends JavaPlugin implements Listener{
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
+		//Registers /nickname command
 		if (cmd.getName().equalsIgnoreCase("nickname") && sender instanceof Player) {
 			
 			Player p = (Player) sender;
 			PlayerInventory inv = p.getInventory();
 			String newname;
 			
+			//Gets name of nickname
 			try {
 				newname = args[0];
 			}
@@ -37,12 +39,15 @@ public class Nickname extends JavaPlugin implements Listener{
 				newname = null;
 			}
 			
+			//Checks if player has name tag and the new nickname is valid
 			if (inv.contains(Material.NAME_TAG)) {
 				if (newname != null && newname.length() <= 16) {
 					
+					//Removes name tag
 					ItemStack stack = inv.getItem(inv.first(Material.NAME_TAG));
 					stack.setAmount(stack.getAmount()-1);
 					
+					//Changes nickname
 					p.setDisplayName("[" + args[0] + "] " + p.getName());
 					p.setCustomName(args[0]);
 					p.sendMessage(ChatColor.GOLD + "Your nickname has been changed to " + args[0] + ".");
@@ -66,7 +71,10 @@ public class Nickname extends JavaPlugin implements Listener{
 	public void onPlayerJoin(PlayerJoinEvent e){
 		Player p = e.getPlayer();
 		String playername = p.getCustomName();
+		
+		//If player has a nickname
 		if (playername != null) {
+			//Sets nickname and displays it in join message
 			p.setDisplayName("[" + playername + "] " + p.getName());
 			e.setJoinMessage(ChatColor.YELLOW + p.getCustomName() + " joined the server!");
 		} else {
